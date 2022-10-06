@@ -20,7 +20,9 @@ public class Binarios1 {
 		 
 		
 		int n;
+		final int TECLA_SALIDA = -1;
 		
+		//autoclosable
 		try (Scanner sc = new Scanner(System.in) ) {
 
 			File carpeta = new File("datos.dat");
@@ -28,17 +30,18 @@ public class Binarios1 {
 				carpeta.createNewFile();
 			}
 
+			//autoclosable
 			try( FileOutputStream fos = new FileOutputStream(carpeta);
 				 DataOutputStream salida = new DataOutputStream(fos);
 				) {			
 			
 				
-				System.out.print("Introduce número entero. -1 para acabar: ");
+				System.out.printf("Introduce número entero. %s para acabar: \n", TECLA_SALIDA);
 				n = sc.nextInt();
 	
-				while (n != -1) {
+				while (n != TECLA_SALIDA) {
 					salida.writeInt(n); // se escribe el número entero en el fichero
-					System.out.print("Introduce número entero. -1 para acabar: ");
+					System.out.printf("Introduce número entero. %s para acabar: \n", TECLA_SALIDA);
 					n = sc.nextInt();
 				}
 				
